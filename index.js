@@ -1,8 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
+const dbName = " tasks.db";
 const port = 4000;
+const db = new sqlite3.Database(dbName);
 
 let tasks = [
   {
