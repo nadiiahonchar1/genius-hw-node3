@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const sqlite3 = require("sqlite3").verbose();
+// const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 const dbName = "tasks.db";
@@ -65,12 +66,13 @@ app.get("/tasks", (req, res) => {
 // });
 app.post("/tasks", (req, res) => {
   const newTask = req.body;
+  const taskId = Math.floor(Math.random() * 1001);
+  console.log(taskId);
 
   if (!newTask || !newTask.text) {
     return res.status(400).json({ message: "Invalid task data" });
   }
 
-  const taskId = 775;
   const task = {
     id: taskId,
     text: newTask.text,
